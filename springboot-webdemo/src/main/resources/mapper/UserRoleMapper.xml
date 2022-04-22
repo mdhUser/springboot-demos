@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.maxwell.webdemo.mapper.UserRoleMapper">
+
+
+    <insert id="addUserRoles">
+        insert into t_user_role values
+        <foreach collection="roleIds" item="rid" separator=",">
+            (#{uid},#{rid})
+        </foreach>
+    </insert>
+
+    <select id="findRoles" resultType="java.lang.Integer">
+
+        select role_id
+        from t_user_role
+        where user_id = #{uid}
+
+    </select>
+
+
+    <delete id="deleteRecords">
+
+        delete from t_user_role where user_id =#{uid}
+
+    </delete>
+
+</mapper>

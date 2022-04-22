@@ -1,0 +1,11 @@
+logging:
+  level:
+    root: debug
+  path: D:/data/logs/springboot-logback-demo
+server:
+  port: 8083
+spring:
+  application:
+    name: springboot-logback-demo
+debug: false
+

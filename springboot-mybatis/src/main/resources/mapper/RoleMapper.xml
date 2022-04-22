@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.maxwell.mybatis.mapper.RoleMapper">
+
+    <resultMap id="rupMap" type="rolesUserPerVO" autoMapping="true">
+        <id property="id" column="id"/>
+        <collection property="userList" ofType="userPermissionVO" autoMapping="true">
+            <id column="uid" property="id"/>
+            <collection property="tPermissions" ofType="tPermission" autoMapping="true">
+                <id property="id" column="tid"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="findRolesWithUserAndPermission"  resultMap="rupMap">
+        select tr.*, tu.*, tp.*, tu.id as uid,tp.id as tid
+        from t_role tr,
+             t_user tu,
+             t_user_role tur,
+             t_role_permission trp,
+             t_permission tp
+        where tr.id = tur.role_id
+          and tu.id = tur.user_id
+          and tr.id = trp.role_id
+          and tp.id = trp.permission_id
+    </select>
+
+
+</mapper>

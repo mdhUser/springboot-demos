@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.maxwell.mybatis.mapper.TUserMapper">
+
+    <resultMap id="userRolesMap" type="userRoleVO" autoMapping="true">
+        <id property="id" column="id"/>
+        <collection property="tRoles" ofType="tRole" autoMapping="true">
+            <id property="id" column="tid"/>
+        </collection>
+    </resultMap>
+    <resultMap id="userPermissionMap" type="userPermissionVO" autoMapping="true">
+        <id property="id" column="id"/>
+        <collection property="tPermissions" ofType="tPermission" autoMapping="true">
+            <id property="id" column="tid"/>
+        </collection>
+    </resultMap>
+
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user
+        values ( null, #{username}, #{password}, #{remark}, #{email}
+               , #{createTime}, #{updateTime})
+    </insert>
+
+    <update id="updateUser">
+        update t_user
+        <set>
+            <if test="username != null and username != ''">
+                username=#{username},
+            </if>
+            <if test="password != null and password != ''">
+                password=#{password},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark=#{remark},
+            </if>
+            <if test="email != null and email != ''">
+                email=#{email}
+            </if>
+        </set>
+        where
+        id = #{id}
+    </update>
+
+    <delete id="deleteUserByUid">
+        delete
+        from t_user
+        where id = #{uid}
+    </delete>
+
+    <select id="findUserRolesLimit" resultMap="userRolesMap">
+
+        select *, tr.id as tid
+        from (select * from t_user limit #{index},#{count}) tu,
+             t_role tr,
+             t_user_role tur
+        where tu.id = tur.user_id
+          and tr.id = tur.role_id
+
+    </select>
+
+    <select id="findUserPermissionLimit" resultMap="userPermissionMap">
+        select tu.*, tp.*, tp.id as tid
+        from (select * from t_user limit #{from},#{total}) tu,
+             t_user_role tur,
+             t_role_permission trp,
+             t_permission tp
+        where tu.id = tur.user_id
+          and tur.role_id = trp.role_id
+          and trp.permission_id = tp.id
+    </select>
+
+    <select id="findUserPermissionByUid" resultMap="userPermissionMap">
+        select tu.*, tp.*, tp.id as tid
+        from t_user tu,
+             t_user_role tur,
+             t_role_permission trp,
+             t_permission tp
+        where tu.id = #{uid}
+          and #{uid} = tur.user_id
+          and tur.role_id = trp.role_id
+          and trp.permission_id = tp.id
+    </select>
+
+</mapper>

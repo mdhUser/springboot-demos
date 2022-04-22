@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.maxwell.mybatisplus.mapper.UserMapper">
+
+    <resultMap type="org.maxwell.mybatisplus.entity.UserPO" id="UserResult" autoMapping="true">
+        <id property="id" column="id"/>
+        <collection property="roles" ofType="org.maxwell.mybatisplus.entity.RolePO" autoMapping="true">
+            <id property="id" column="rid"/>
+        </collection>
+    </resultMap>
+
+    <sql id="selectUserSql">
+        select u.id, u.password, u.user_name, u.email, u.phone_number, u.description, u.create_time, u.update_time,r.id as rid, r.name, r.role_key, r.description, r.create_time, r.update_time
+        from tb_user u
+                 left join tb_user_role ur on u.id=ur.user_id
+                 inner join tb_role r on ur.role_id=r.id
+    </sql>
+
+    <select id="findList" resultMap="UserResult">
+        <include refid="selectUserSql"/>
+        where u.id != 0
+        <if test="userName != null and userName != ''">
+            AND u.user_name like concat('%', #{userName}, '%')
+        </if>
+        <if test="description != null and description != ''">
+            AND u.description like concat('%', #{description}, '%')
+        </if>
+        <if test="phoneNumber != null and phoneNumber != ''">
+            AND u.phone_number like concat('%', #{phoneNumber}, '%')
+        </if>
+        <if test="email != null and email != ''">
+            AND u.email like concat('%', #{email}, '%')
+        </if>
+    </select>
+
+
+</mapper>
