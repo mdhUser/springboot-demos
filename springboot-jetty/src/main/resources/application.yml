@@ -10,3 +10,23 @@ enterprise:
     - 前端
     - 大数据
 
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssm_db?useSSL=false&autoReconnect=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
+
+mybatis-plus:
+  configuration:
+    cache-enabled: true
+    use-generated-keys: true
+    default-executor-type: REUSE
+    use-actual-param-name: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+

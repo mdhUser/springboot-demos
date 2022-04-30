@@ -1,4 +1,4 @@
-package org.maxwell.jetty.pojo;
+package org.maxwell.jetty.entity.vo;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -20,6 +20,5 @@ public class Enterprise {
     private Integer age;
     private String tel;
     private String[] subject;
-
 
 }
