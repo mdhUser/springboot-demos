@@ -1,6 +1,5 @@
 package org.maxwell.webdemo.controller;
-import org.maxwell.webdemo.model.dto.ResponseResult;
-import org.maxwell.webdemo.model.po.Role;
+
 import org.maxwell.webdemo.model.vo.RoleVO;
 import org.maxwell.webdemo.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;

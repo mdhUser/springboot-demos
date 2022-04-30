@@ -1,9 +1,9 @@
-/*/HELP.md
-/*/.idea
-/*/*.iml
-/*/.mvn
-/*/src/test
-/*/*.cmd
-/*/target/
-/*/mvnw
+/**/HELP.md
+/**/.idea
+/**/*.iml
+/**/.mvn
+/**/src/test
+/**/*.cmd
+/**/target/
+/**/mvnw
 .idea
