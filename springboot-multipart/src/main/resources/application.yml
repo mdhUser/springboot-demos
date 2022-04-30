@@ -1,0 +1,12 @@
+mybean:
+  name: mdh
+  age: 13
+
+server:
+  port: 8082
+#  设置文件总大小，单个文件最大容量
+spring:
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 10MB
