@@ -1,0 +1,7 @@
+server:
+  port: 8082
+
+
+company:
+  name: Maxwell02
+  address : 上海

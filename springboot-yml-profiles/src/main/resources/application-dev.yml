@@ -1,0 +1,7 @@
+server:
+  port: 8080
+
+
+company:
+  name: Maxwell01
+  address : 上海

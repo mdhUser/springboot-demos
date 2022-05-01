@@ -1,0 +1,7 @@
+server:
+  port: 8083
+
+
+company:
+  name: Maxwell
+  address : 上海
