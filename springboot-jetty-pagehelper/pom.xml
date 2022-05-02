@@ -11,7 +11,7 @@
     <groupId>org.maxwell</groupId>
     <artifactId>springboot-jetty-pagehelper</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-jetty</name>
+    <name>springboot-jetty-pagehelper</name>
     <description>springboot-jetty-pagehelper</description>
     <properties>
         <java.version>17</java.version>
