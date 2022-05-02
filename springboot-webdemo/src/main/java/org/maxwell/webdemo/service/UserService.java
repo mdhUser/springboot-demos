@@ -15,11 +15,11 @@ import org.maxwell.webdemo.model.vo.UserVO;
  */
 public interface UserService extends IService<TUser> {
 
-    /**
-     * 模糊分页查找用户列表
-     *
+    /***
+     *  模糊查找用户列表
      * @param pageSize
      * @param currentPage
+     * @param name
      * @return
      */
     PageDTO<UserVO> findUserList(int pageSize, int currentPage, String name);

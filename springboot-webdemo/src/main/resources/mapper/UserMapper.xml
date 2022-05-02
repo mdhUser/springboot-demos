@@ -16,7 +16,7 @@
     <sql id="user_select">
         select * from t_user
         <where>
-            <if test="name != null and name != ''">
+            <if test="name != null and name !=''">
                 username like CONCAT('%', #{name}, '%')
             </if>
         </where>

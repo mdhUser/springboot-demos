@@ -24,8 +24,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/userList")
-    public ResponseResult<PageDTO<UserVO>> userList(int pageSize, int currentPage, String name) {
+    @GetMapping("/userList/{pageSize}/{currentPage}/{name}")
+    public ResponseResult<PageDTO<UserVO>> userList(@PathVariable int pageSize, @PathVariable int currentPage, @PathVariable String name) {
         return ResponseResult.success(userService.findUserList(pageSize, currentPage, name));
     }
 

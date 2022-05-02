@@ -38,6 +38,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, TUser> implements U
     public PageDTO<UserVO> findUserList(int pageSize, int currentPage, String name) {
         int records = userMapper.findTotalRecords();
         int offset = (currentPage - 1) * pageSize;
+        if (name.equals("''")) {
+            name = "";
+        }
         List<UserVO> userList = userMapper.findUserListLike(offset, pageSize, name);
         return new PageDTO<>(currentPage, pageSize, records, userList);
     }
@@ -59,7 +62,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, TUser> implements U
         List<Integer> roleIds = user.getRoleIds();
         Collections.sort(roleIds);
         Collections.sort(ids);
-        if (!ids.equals(roleIds)){
+        if (!ids.equals(roleIds)) {
             userRoleMapper.deleteRecords(user.getId());
             int row = userRoleMapper.addUserRoles(user.getId(), user.getRoleIds());
             if (row < 1) {
