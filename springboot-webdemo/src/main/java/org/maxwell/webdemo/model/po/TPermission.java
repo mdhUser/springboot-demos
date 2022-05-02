@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-public class Permission{
+public class TPermission {
 
     /**
      * id
@@ -27,6 +27,6 @@ public class Permission{
     /**
      *
      */
-    private Set<Role> roles = new HashSet<Role>(0);
+    private Set<TRole> roles = new HashSet<TRole>(0);
 
 }

@@ -1,5 +1,6 @@
 package org.maxwell.webdemo.controller;
 
+import org.maxwell.webdemo.model.po.TRole;
 import org.maxwell.webdemo.model.vo.RoleVO;
 import org.maxwell.webdemo.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping("/roleList")
-    public List<RoleVO> roleList(){
+    public List<TRole> roleList() {
         return roleService.findRoleList();
     }
 

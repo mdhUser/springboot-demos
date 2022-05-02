@@ -6,9 +6,10 @@ import org.maxwell.webdemo.model.dto.PageDTO;
 import org.maxwell.webdemo.model.dto.ResponseResult;
 import org.maxwell.webdemo.model.vo.UserVO;
 import org.maxwell.webdemo.service.UserService;
-import org.maxwell.webdemo.utils.ResponseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import static org.maxwell.webdemo.constant.ResponseStatus.*;
 
 /**
  * @description:
@@ -30,17 +31,17 @@ public class UserController {
 
     @PostMapping("/addUser")
     public ResponseResult<Integer> addUser(@RequestBody AddUser user) {
-        return userService.addUser(user) > 0 ? ResponseResult.success() : ResponseResult.fail(ResponseStatus.FAIL.getDescription());
+        return userService.addUser(user) > 0 ? ResponseResult.success() : ResponseResult.fail(SAVE_ERROR.getDescription());
     }
 
     @PostMapping("/updateUser")
     public ResponseResult<Integer> updateUser(@RequestBody UpdateUser user) {
-        return userService.updateUser(user) > 0 ? ResponseResult.success() : ResponseResult.fail(ResponseStatus.FAIL.getDescription());
+        return userService.updateUser(user) > 0 ? ResponseResult.success() : ResponseResult.fail(UPDATE_ERROR.getDescription());
     }
 
     @GetMapping("/deleteUser")
     public ResponseResult<Integer> deleteUser(int uid) {
-        return userService.deleteUser(uid) > 0 ? ResponseResult.success() : ResponseResult.fail(ResponseStatus.FAIL.getDescription());
+        return userService.deleteUser(uid) > 0 ? ResponseResult.success() : ResponseResult.fail(DELETE_ERROR.getDescription());
     }
 
 

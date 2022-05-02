@@ -12,11 +12,6 @@
         </collection>
     </resultMap>
 
-    <select id="findUserList" resultType="userVO">
-        select *
-        from t_user
-        order by updateTime desc, createTime desc limit #{offset}, #{pageSize}
-    </select>
 
     <sql id="user_select">
         select * from t_user
@@ -29,12 +24,11 @@
     </sql>
 
     <select id="findUserListLike" resultMap="userMap">
-
         select u.*,r.id as rid,r.name,r.description
         from (<include refid="user_select"/>) u,t_role
         r,t_user_role ur
         where u.id=ur.user_id and r.id=ur.role_id
-
+        order by u.updateTime desc, u.createTime desc
     </select>
 
     <insert id="addUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id">

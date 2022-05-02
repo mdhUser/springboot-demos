@@ -2,7 +2,7 @@ package org.maxwell.webdemo.model.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import org.maxwell.webdemo.utils.ResponseStatus;
+import org.maxwell.webdemo.constant.ResponseStatus;
 
 /**
  * @description:
@@ -10,7 +10,6 @@ import org.maxwell.webdemo.utils.ResponseStatus;
  * @email: maodihui@foxmail.com
  * @date: 2022/4/2 20:20
  */
-
 @Data
 @Builder
 public class ResponseResult<T> {

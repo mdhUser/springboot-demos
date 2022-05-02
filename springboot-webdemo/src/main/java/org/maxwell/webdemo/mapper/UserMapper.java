@@ -1,9 +1,11 @@
 package org.maxwell.webdemo.mapper;
 
-import org.apache.ibatis.annotations.Param;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.maxwell.webdemo.model.bo.AddUser;
 import org.maxwell.webdemo.model.bo.UpdateUser;
+import org.maxwell.webdemo.model.po.TUser;
 import org.maxwell.webdemo.model.vo.UserVO;
 
 import java.util.List;
@@ -14,7 +16,8 @@ import java.util.List;
  * @email: maodihui@foxmail.com
  * @date: 2022/4/18 12:08
  */
-public interface UserMapper {
+@Mapper
+public interface UserMapper extends BaseMapper<TUser> {
 
 
     /**
@@ -27,16 +30,6 @@ public interface UserMapper {
 
 
     /**
-     * 分页查找用户列表
-     *
-     * @param offset
-     * @param pageSize
-     * @return
-     */
-    List<UserVO> findUserList(@Param("offset") int offset, @Param("pageSize") int pageSize);
-
-
-    /**
      * 模糊分页查找用户列表
      *
      * @param offset
@@ -44,7 +37,7 @@ public interface UserMapper {
      * @param name
      * @return
      */
-    List<UserVO> findUserListLike(@Param("offset") int offset, @Param("pageSize") int pageSize, @Param("name") String name);
+    List<UserVO> findUserListLike(int offset, int pageSize,String name);
 
     /**
      * 新增用户

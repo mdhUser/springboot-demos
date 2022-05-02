@@ -17,6 +17,7 @@ spring:
     username: root
     password: root
 
+
 mybatis-plus:
   configuration:
     cache-enabled: true

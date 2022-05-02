@@ -1,0 +1,35 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/webdemo?autoReconnect=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  # 设置开启热部署
+  devtools:
+    restart:
+      enabled: true
+
+#mp 配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+    local-cache-scope: session
+    cache-enabled: true
+    use-generated-keys: true
+    use-actual-param-name: true
+  type-aliases-package: org.maxwell.webdemo.model
+
+logging:
+  level:
+    root: debug
+  pattern:
+    #定义控制台日志打印格式
+    console: "%d{yyyy-MM-dd} {%thread} %-5level %logger{50} - %msg%n"
+    # 定义归档日志文件日志格式
+    file: "%d{yyyy-MM-dd} {%thread} %-5level %logger{50} - %msg%n"
+  file:
+    name: E:/logs/springboot-webdemo.log

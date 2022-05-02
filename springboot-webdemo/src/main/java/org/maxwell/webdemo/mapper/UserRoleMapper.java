@@ -1,6 +1,9 @@
 package org.maxwell.webdemo.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.maxwell.webdemo.model.po.TUserRole;
 
 import java.util.List;
 
@@ -10,17 +13,18 @@ import java.util.List;
  * @email: maodihui@foxmail.com
  * @date: 2022/4/18 15:32
  */
-public interface UserRoleMapper {
+@Mapper
+public interface UserRoleMapper extends BaseMapper<TUserRole> {
 
 
     /**
      * 添加用户角色
      *
-     * @param id
+     * @param uid
      * @param roleIds
      * @return
      */
-    int addUserRoles(@Param("uid") Integer id, @Param("roleIds") List<Integer> roleIds);
+    int addUserRoles(Integer uid, List<Integer> roleIds);
 
     /**
      * 查找用户角色

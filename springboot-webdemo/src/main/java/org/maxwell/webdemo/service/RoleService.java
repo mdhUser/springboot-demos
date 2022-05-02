@@ -1,5 +1,7 @@
 package org.maxwell.webdemo.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import org.maxwell.webdemo.model.po.TRole;
 import org.maxwell.webdemo.model.vo.RoleVO;
 
 import java.util.List;
@@ -10,8 +12,12 @@ import java.util.List;
  * @email: maodihui@foxmail.com
  * @date: 2022/4/18 21:21
  */
-public interface RoleService {
+public interface RoleService extends IService<TRole> {
 
-    List<RoleVO> findRoleList();
+    /***
+     *  查找角色列表
+     * @return
+     */
+    List<TRole> findRoleList();
 
 }
