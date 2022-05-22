@@ -1,0 +1,10 @@
+file:
+  upload:
+    path: D:\down
+
+#设置文件总大小，单个文件最大容量
+spring:
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 10MB
