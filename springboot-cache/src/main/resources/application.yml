@@ -1,0 +1,28 @@
+spring:
+  redis:
+    host: 47.107.226.181
+    port: 6379
+    database: 1
+    password: Maxwell
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/tmp_db?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#端口
+server:
+  port: 8088
+
+#日志
+logging:
+  level:
+    com.donleo.cache.mapper: debug
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: org.maxwell.cache.model
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
