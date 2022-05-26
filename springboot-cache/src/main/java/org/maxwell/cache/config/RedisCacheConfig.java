@@ -37,13 +37,13 @@ public class RedisCacheConfig {
      * 1、数据将以json格式保存
      * 2、将默认的jdk序列化规则改为redis序列化规则
      * 配置redisTemplate 代替默认配置
-     * @param redisConnectionFactory  RedisConnectionFactory
+     * @param factory  RedisConnectionFactory
      * @return  RedisTemplate
      */
     @Bean("redisTemplate")
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(redisConnectionFactory);
+        template.setConnectionFactory(factory);
         Jackson2JsonRedisSerializer serializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper mapper = new ObjectMapper();
         //禁止将Date转Timestameps
