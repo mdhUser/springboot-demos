@@ -2,6 +2,7 @@ package org.maxwell.mp;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.maxwell.mp.mapper.UserMapper;
@@ -85,6 +86,12 @@ class SpringbootMpItcastApplicationTests {
     }
 
     @Test
+    void testSelectAll(){
+        List<User> users = userMapper.selectList(null);
+        System.out.println("users = " + users);
+    }
+
+    @Test
     void selectLambda() {
         //jdk8
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
@@ -115,6 +122,7 @@ class SpringbootMpItcastApplicationTests {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         //分页条件
         queryWrapper.like(User::getUserName, "伤");
+        queryWrapper.orderByDesc(User::getAge);
         Page<User> result = userMapper.selectPage(page, queryWrapper);
         List<User> records = result.getRecords();
         System.out.println("records = " + records);
@@ -127,7 +135,28 @@ class SpringbootMpItcastApplicationTests {
         queryWrapper.eq(User::getUserName, "赵七伤").or().eq(User::getAge, 25);
         List<User> users = userService.list(queryWrapper);
         System.out.println("users = " + users);
+    }
+
+
+    @Test
+    void testAgeQuery() {
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.gt(User::getAge, 20);
+        queryWrapper.select(User::getUserName,User::getAge);
+        List<User> users = userService.list(queryWrapper);
+        System.out.println("users = " + users);
+    }
+
+    @Test
+    void testGroupBy(){
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.apply("select count(age),user_name");
+        queryWrapper.groupBy(User::getAge);
+        List<User> users = userMapper.selectList(queryWrapper);
+        System.out.println("users = " + users);
 
     }
+
+
 
 }
