@@ -1,0 +1,11 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /swagger
+
+swagger:
+  enabled: true
+  base-package: org.maxwell
+  title: "测试告辞"
+  description: "对Swagger程序进行测试"
+  version: 1.0
