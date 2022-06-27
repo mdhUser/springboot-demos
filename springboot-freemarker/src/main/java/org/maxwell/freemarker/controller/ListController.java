@@ -68,4 +68,31 @@ public class ListController {
         //返回模板文件名称
         return "02-list";
     }
+
+    @GetMapping("innerFunc")
+    public String testInnerFunc(Model model) {
+        //1.1 小强对象模型数据
+        Student stu1 = new Student();
+        stu1.setName("小强");
+        stu1.setAge(18);
+        stu1.setMoney(1000.86f);
+        stu1.setBirthday(new Date());
+        //1.2 小红对象模型数据
+        Student stu2 = new Student();
+        stu2.setName("小红");
+        stu2.setMoney(200.1f);
+        stu2.setAge(19);
+        //1.3 将两个对象模型数据存放到List集合中
+        List<Student> stus = new ArrayList<>();
+        stus.add(stu1);
+        stus.add(stu2);
+        model.addAttribute("stus", stus);
+        // 2.1 添加日期
+        Date date = new Date();
+        model.addAttribute("today", date);
+        // 3.1 添加数值
+        model.addAttribute("point", 102920122);
+        return "03-innerFunc";
+    }
+
 }
